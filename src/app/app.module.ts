@@ -7,9 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductComponent } from './admin/product/product.component';
-import { SellerComponent } from './admin/seller/seller.component';
-import { DriverComponent } from './admin/driver/driver.component';
 import { UserComponent } from './admin/user/user.component';
+import { CustomersComponent } from './admin/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,8 @@ import { UserComponent } from './admin/user/user.component';
     FooterComponent,
     SidebarComponent,
     ProductComponent,
-    SellerComponent,
-    DriverComponent,
     UserComponent,
+    CustomersComponent,
   ],
   imports: [
     BrowserModule,
