@@ -3,9 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  GlobalApi: 'https://eyematters-node-mongo-latest.herokuapp.com/',
-  ConnectionString: 'mongodb+srv://dbuser:dbuser123@clustereyematters-3gb3c.mongodb.net/eyematters'
+  production: false
 };
 
 /*

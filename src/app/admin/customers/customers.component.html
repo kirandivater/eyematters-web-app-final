@@ -1,255 +1,130 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="col-md-12 row">
-                    <div class="col-md-9">
-                        <h4 class="card-title">Customer</h4>
-                    </div>
-                    <div class="col-md-3">
-                        <button mat-button color="warn" style="background-color: #f44336; color: #fff;"
-                            (click)="open(insertcustomer)">Insert Customer</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <div class="mat-elevation-z8">
-                        <div fxLayout fxLayoutAlign="center center">
-                            <mat-form-field fxFlex="100%">
-                                <input matInput type="text" (keyup)="doFilter($event.target.value)"
-                                    placeholder="Search">
-                            </mat-form-field>
-                        </div>
-                        <table mat-table matSort [dataSource]="dataSource">
-                            <ng-container matColumnDef="first_name">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.first_name}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="last_name">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.last_name}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="phone">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.phone}}
-                                </td>
-                            </ng-container>
-
-                            <!-- <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
-                    <td mat-cell *matCellDef="let element">
-                        <input type="hidden" name="" id="cust_{{element._id}}">
-                        {{element.email}}
-                    </td>
-                </ng-container> -->
-
-                            <ng-container matColumnDef="email">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.email}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="street">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.street}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="city">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.city}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="state">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email ID </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.state}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="zip_code">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Pin Code </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    {{element.zip_code}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="dob">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Birth </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    <!-- <input type="text" required matInput
-                                [matDatepicker]="picker2" (dateInput)="addEvent('input', $event)"
-                                (dateChange)="addEvent('change', $event)">
-                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                            <mat-datepicker #picker2></mat-datepicker> -->
-                                    {{element.dob|date: 'dd-MMM-y'}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="anniversary">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Anniversary </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <input type="hidden" name="" id="cust_{{element._id}}">
-                                    <!-- <input type="text" required matInput
-                                [matDatepicker]="picker2" (dateInput)="addEvent('input', $event)"
-                                (dateChange)="addEvent('change', $event)">
-                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                            <mat-datepicker #picker2></mat-datepicker> -->
-                                    {{element.anniversary|date: 'dd-MMM-y'}}
-                                </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="action">
-                                <th mat-header-cell *matHeaderCellDef> Action </th>
-                                <td mat-cell *matCellDef="let element">
-                                    <a mat-icon-button (click)="getdata(element); open(mymodal)">
-                                        <span class="material-icons" style="color: #28A745;">
-                                            update
-                                        </span>
-                                    </a>
-                                    <a mat-icon-button (click)="DeleteCustomerDetails(element._id)">
-                                        <span class="material-icons" style="color: #DC3545;">
-                                            delete
-                                        </span>
-                                    </a>
-                                </td>
-                            </ng-container>
-
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                        </table>
-
-                        <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Customer</h4>
         </div>
-    </div>
-
-</div>
-
-<ng-template #insertcustomer let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Customer</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span class="material-icons" style="color: #DC3545;">
-                close
-            </span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="col-md-12 row">
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>First Name</mat-label>
-                    <input matInput id="firstname" name="firstname" #firstname="ngModel" [(ngModel)]="fname"
-                        placeholder="Enter First Name" appAlphabetsOnly>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Last Name</mat-label>
-                    <input matInput id="lastname" name="lastname" #lastname="ngModel" [(ngModel)]="lname"
-                        placeholder="Enter First Name" appAlphabetsOnly>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Phone</mat-label>
-                    <input matInput id="mobile" name="mobile" #mobile="ngModel" [(ngModel)]="contactno"
-                        placeholder="Enter Mobile Number" appNumberOnly>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Email Id</mat-label>
-                    <input matInput id="email" name="email" #email="ngModel" [(ngModel)]="mail"
-                        placeholder="Enter Email Id">
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-12">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Address</mat-label>
-                    <textarea matInput id="addr" name="addr" #addr="ngModel" [(ngModel)]="address"
-                        placeholder="Enter Address"></textarea>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                    <mat-label>City</mat-label>
-                    <input type="text" required id="_city" name="_city" #_city="ngModel" [(ngModel)]="city" matInput
-                        placeholder="Enter City" appAlphaNumeric>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                    <mat-label>State</mat-label>
-                    <input type="text" required id="_state" name="_state" #_state="ngModel" [(ngModel)]="state" matInput
-                        placeholder="Enter State" appAlphaNumeric>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Pin Code</mat-label>
-                    <input type="text" required id="_zip" name="_zip" #_zip="ngModel" [(ngModel)]="zip" matInput
-                        placeholder="Enter Zip" appAlphaNumeric>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>DOB</mat-label>
-                    <input type="text" required id="dob" name="dob" #dob="ngModel" [(ngModel)]="_dob" matInput
-                        [matDatepicker]="picker1" (dateInput)="addEvent('input', $event)"
-                        (dateChange)="addEvent('change', $event)">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-            </div>
-
-            <div class="col-md-6">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Anniversary</mat-label>
-                    <input type="text" required id="anniversary" name="anniversary" #anniversary="ngModel"
-                        [(ngModel)]="_anniversary" matInput [matDatepicker]="picker2"
-                        (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-            </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Name
+                </th>
+                <th>
+                  Country
+                </th>
+                <th>
+                  City
+                </th>
+                <th class="text-right">
+                  Salary
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Dakota Rice
+                  </td>
+                  <td>
+                    Niger
+                  </td>
+                  <td>
+                    Oud-Turnhout
+                  </td>
+                  <td class="text-right">
+                    $36,738
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Minerva Hooper
+                  </td>
+                  <td>
+                    Curaçao
+                  </td>
+                  <td>
+                    Sinaai-Waas
+                  </td>
+                  <td class="text-right">
+                    $23,789
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Sage Rodriguez
+                  </td>
+                  <td>
+                    Netherlands
+                  </td>
+                  <td>
+                    Baileux
+                  </td>
+                  <td class="text-right">
+                    $56,142
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Philip Chaney
+                  </td>
+                  <td>
+                    Korea, South
+                  </td>
+                  <td>
+                    Overland Park
+                  </td>
+                  <td class="text-right">
+                    $38,735
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Doris Greene
+                  </td>
+                  <td>
+                    Malawi
+                  </td>
+                  <td>
+                    Feldkirchen in Kärnten
+                  </td>
+                  <td class="text-right">
+                    $63,542
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Mason Porter
+                  </td>
+                  <td>
+                    Chile
+                  </td>
+                  <td>
+                    Gloucester
+                  </td>
+                  <td class="text-right">
+                    $78,615
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Jon Porter
+                  </td>
+                  <td>
+                    Portugal
+                  </td>
+                  <td>
+                    Gloucester
+                  </td>
+                  <td class="text-right">
+                    $98,615
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" mat-button color="warn" style="background-color: #f44336; color: #fff;"
-            (click)="InsertCustomerDetails()">Register</button>
-    </div>
-</ng-template>
+  
+  </div>

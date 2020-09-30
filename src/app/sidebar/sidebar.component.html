@@ -1,6 +1,32 @@
 <ul class="nav">
-  <li *ngFor="let menu of Menu">
-    <a (click)="Logout(smenu.Route[0].Action, smenu.Route[0].Controller)"
-      *ngFor="let smenu of menu.menulist">{{smenu.Name}}</a>
-  </li>
-</ul>
+    <li class="active">
+      <a  routerLink="dashboard">
+        <i class="now-ui-icons design_app"></i>
+        <p>Dashboard</p>
+      </a>
+    </li>
+    <li>
+      <a routerLink="customer">
+        <i class="now-ui-icons education_atom"></i>
+        <p>Customer</p>
+      </a>
+    </li>
+    <li>
+      <a routerLink="product">
+        <i class="now-ui-icons shopping_delivery-fast"></i>
+        <p>Product</p>
+      </a>
+    </li>
+    <li>
+      <a routerLink="user">
+        <i class="now-ui-icons users_single-02"></i>
+        <p>User Profile</p>
+      </a>
+    </li>
+    <li class="active-pro">
+      <a href="#">
+        <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+        <p>User Role : Admin</p>
+      </a>
+    </li>
+  </ul>
