@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DroppingAdminPanelAngularApp": {
+    "eyematters": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +13,21 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/DroppingAdminPanelAngularApp",
+            "outputPath": "dist/eyematters",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/now-ui-dashboard.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -41,7 +44,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -57,24 +59,32 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "prod": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.prod.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "DroppingAdminPanelAngularApp:build"
+            "browserTarget": "eyematters:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "DroppingAdminPanelAngularApp:build:production"
+              "browserTarget": "eyematters:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DroppingAdminPanelAngularApp:build"
+            "browserTarget": "eyematters:build"
           }
         },
         "test": {
@@ -111,15 +121,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "DroppingAdminPanelAngularApp:serve"
+            "devServerTarget": "eyematters:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "DroppingAdminPanelAngularApp:serve:production"
+              "devServerTarget": "eyematters:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "DroppingAdminPanelAngularApp"
+    }
+  },
+  "defaultProject": "eyematters",
+  "cli": {
+    "analytics": "63a404ce-9125-4989-9982-fd7099d1ffd7"
+  }
 }

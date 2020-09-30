@@ -1,0 +1,38 @@
+<div class="content">
+    <form #login="ngForm">
+        <div class="container">
+            <h3 class="text-center" style="width: 100%;">
+                <p>Login</p>
+            </h3>
+
+            <mat-form-field appearance="fill">
+                <mat-label>User Type</mat-label>
+                <mat-select (selectionChange)="Users($event.value)">
+                    <mat-option value="S">Select User Type</mat-option>
+                    <mat-option *ngFor="let user of UserType" [value]="user.id">{{user.usertype}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>User Name</mat-label>
+                <input matInput id="userid" name="userid" #userid="ngModel" [(ngModel)]="uid" placeholder="Enter Email Id or Mobile no">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" id="password" name="password" #password="ngModel" [(ngModel)]="pwd" matInput placeholder="Enter Password" appAlphaNumeric>
+            </mat-form-field>
+
+            <button type="button" (click)="Login()">Login</button>
+            <div class="clearfix"></div>
+            <label>
+                <mat-checkbox [checked]="true">
+                    Remember me
+                </mat-checkbox>
+                <!-- <input type="checkbox" checked="checked" name="remember">  -->
+            </label>
+            <!-- <a routerLink="/reg">Register</a> -->
+            <span class="psw">Forgot <a routerLink="/login">password?</a></span>
+        </div>
+    </form>
+</div>
